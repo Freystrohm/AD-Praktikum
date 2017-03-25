@@ -4,35 +4,86 @@
  */
 package aufg1_listen;
 
-public class ListeB<T>
+public class ListeB<T> implements IList<T>
 {
-	private Object[] array;
+	//private Object[] array;
 	ElementB<T> head, tail;
-	
-	
-	@SuppressWarnings("unchecked")
+
 	public ListeB()
 	{
-		array = new Object[10];
+		//array = new Object[10];
 		head = new ElementB<T>(null, 0);
-		array[0] = head;
+		tail = head;
+		//array[0] = head;
 	}
-	
-	//to be done
+
+	@Override
 	public void insert(T element, int pos)
 	{
+		ElementB<T> temp = head;
+		
 		if(head.equals(tail))
 		{
 			tail = new ElementB<T>(element, 1);
-			array[1] = tail;
+			//array[1] = tail;
 			head.setNext(tail);
+			tail.setPrevious(head);
 		}
-		else if(tail.getIndex() >= pos)
+		else if(tail.getIndex() <= pos)
 		{
-			
+			temp = tail;
+			tail = new ElementB<T>(element, temp.getIndex() + 1);
+			tail.setPrevious(temp);
+			temp.setNext(tail);
 		}
+		else
+		{
+			while(!(temp.getIndex() == pos))
+			{
+				temp = temp.getNext();
+			}
+			temp.getPrevious().setNext(new ElementB<T>(element, pos));
+			temp.getPrevious().getNext().setPrevious(temp.getPrevious());
+			temp.setPrevious(temp.getPrevious().getNext());
+			temp.getPrevious().setNext(temp);
+			//hier---------------------------------------------------------
+		}
+		
 	}
-	
-	
-	
+
+	@Override
+	public void delete(int pos)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(String key)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int find(String key)
+	{
+		
+		return 0;
+	}
+
+	@Override
+	public Object retrieve(int pos)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void concat(IList<T> liste)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }
