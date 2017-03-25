@@ -10,6 +10,6 @@ public interface IList<T>
 	void delete(int pos);
 	void delete(String key);
 	int find(String key);
-	Object retrieve(int pos);
+	T retrieve(int pos);
 	void concat(IList<T> liste);
 }
