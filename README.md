@@ -14,3 +14,5 @@ ListC : Luis
 
 Am besten die Listen klassen dann auch so bennenen und auch eventuelle zusatz klassen mit dem aufgaben Buchstaben versehen.
 Das vermeidet überschneidungen bei der Namensgebung
+
+Edit: Habe mal das Interface gepusht, das dann implementeiren dann brauchen wir die tests nur einmal schreiben 
