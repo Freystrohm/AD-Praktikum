@@ -17,7 +17,7 @@ class ElementB<T>
 	{
 		this.element = element;
 		this.index = index;
-		key = "Elemtent " + nextKey;
+		key = "Element " + nextKey;
 		nextKey++;
 	}
 	
