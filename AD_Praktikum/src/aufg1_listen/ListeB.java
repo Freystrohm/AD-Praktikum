@@ -46,7 +46,6 @@ public class ListeB<T> implements IList<T>
 			temp.getPrevious().getNext().setPrevious(temp.getPrevious());
 			temp.setPrevious(temp.getPrevious().getNext());
 			temp.getPrevious().setNext(temp);
-			//hier---------------------------------------------------------
 		}
 		
 	}
@@ -68,12 +67,32 @@ public class ListeB<T> implements IList<T>
 	@Override
 	public int find(String key)
 	{
-		
-		return 0;
+		return findELe(key).getIndex();
 	}
+	
+	private ElementB<T> findELe(String key)
+	{
+		ElementB<T> temp = head;
+		while(temp != tail && !temp.getKey().equals(key))
+		{
+			temp = temp.getNext();
+		}
+		return temp;
+	}
+	
+	private ElementB<T> findELe(int pos)
+	{
+		ElementB<T> temp = head;
+		while(temp != tail && !(temp.getIndex() == pos))
+		{
+			temp = temp.getNext();
+		}
+		return temp;
+	}
+	
 
 	@Override
-	public Object retrieve(int pos)
+	public T retrieve(int pos)
 	{
 		// TODO Auto-generated method stub
 		return null;

@@ -4,11 +4,11 @@
  */
 package aufg1_listen;
 
-public class ElementB<T>
+class ElementB<T>
 {
 	private ElementB<T> previous, next;
 	private int index;
-	String key;
+	private String key;
 	T element;
 	
 	private static int nextKey = 0;
