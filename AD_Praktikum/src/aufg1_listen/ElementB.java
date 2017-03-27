@@ -54,6 +54,11 @@ class ElementB<T>
 		this.next = next;
 	}
 	
+	public void setIndex(int index)
+	{
+		this.index = index;
+	}
+	
 	
 	//-------------------------------------------------------
 	@SuppressWarnings("unchecked")
