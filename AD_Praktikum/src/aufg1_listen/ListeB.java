@@ -104,7 +104,7 @@ public class ListeB<T> implements IList<T>
 		return findELe(pos).element;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void concat(IList<T> liste)
 	{
