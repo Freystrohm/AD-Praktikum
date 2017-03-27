@@ -7,7 +7,7 @@ package aufg1_listen;
 public class ListeB<T> implements IList<T>
 {
 	//private Object[] array;
-	ElementB<T> head, tail;
+	private ElementB<T> head, tail;
 
 	public ListeB()
 	{
@@ -53,15 +53,22 @@ public class ListeB<T> implements IList<T>
 	@Override
 	public void delete(int pos)
 	{
-		// TODO Auto-generated method stub
+		delete(findELe(pos));
 		
 	}
 
 	@Override
 	public void delete(String key)
 	{
-		// TODO Auto-generated method stub
-		
+		delete(findELe(key));
+	}
+	
+	private void delete(ElementB<T> element)
+	{
+		element.getNext().setPrevious(element.getPrevious());
+		element.getPrevious().setNext(element.getNext());
+		element.setNext(null);
+		element.setPrevious(null);
 	}
 
 	@Override
@@ -94,15 +101,23 @@ public class ListeB<T> implements IList<T>
 	@Override
 	public T retrieve(int pos)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return findELe(pos).element;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void concat(IList<T> liste)
 	{
-		// TODO Auto-generated method stub
-		
+		ElementB<T>	temp = tail.getPrevious();
+		if(liste instanceof ListeB)
+		{
+			temp.setNext(((ListeB<T>)liste).head.getNext());
+			tail.setPrevious(((ListeB<T>)liste).tail.getPrevious());
+			((ListeB<T>)liste).tail.getPrevious().setNext(tail);
+			((ListeB<T>)liste).head.getNext().setPrevious(temp);
+			((ListeB<T>)liste).head.setNext(((ListeB<T>)liste).tail);
+			((ListeB<T>)liste).tail.setPrevious(((ListeB<T>)liste).head);
+		}
 	}
 
 }
