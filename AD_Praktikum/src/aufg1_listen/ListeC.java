@@ -37,11 +37,13 @@ public class ListeC<T> implements IList<T>
 				zaehler++;
 			}while (temp.getNext()!= tail);
 			zaehler++;
-			ElementC<T> neuesElement=new ElementC<T>(element);
-			neuesElement.setNext(temp.getNext());
-			temp.setNext(neuesElement);
-			zaehler++;
-			temp=neuesElement;	
+			if(temp.getNext()!=head){
+				ElementC<T> neuesElement=new ElementC<T>(element);
+				neuesElement.setNext(temp.getNext());
+				temp.setNext(neuesElement);
+				zaehler++;
+				temp=neuesElement;
+			}
 		}
 		
 
