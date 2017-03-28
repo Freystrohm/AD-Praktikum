@@ -4,37 +4,34 @@
  */
 package aufg1_listen;
 
-class ElementB<T>
+class ElementC<T>
 {
-	private ElementB<T> previous, next;
-	//private int index;
+	private ElementC<T> next;
 	private String key;
 	T element;
+	public static int zaehler=0;
 	
 	private static int nextKey = 0;
-	public static int zaehler = 0;
 	
-	public ElementB(T element)
+	public ElementC(T element)
 	{
+		zaehler++;
 		this.element = element;
 		zaehler++;
 		key = "Element " + nextKey;
 		zaehler++;
 		nextKey++;
-		zaehler++;
 	}
 	
 	
-	//Getter---------------------------------------------	
-	public ElementB<T> getNext()
+	//Getter---------------------------------------------
+	
+	public ElementC<T> getNext()
 	{
 		return next;
 	}
 	
-	public ElementB<T> getPrevious()
-	{
-		return previous;
-	}
+
 	
 	public String getKey()
 	{
@@ -42,28 +39,30 @@ class ElementB<T>
 	}
 	
 	//Setter---------------------------------------------
-	public void setPrevious(ElementB<T> previous)
+
+	public void setNext(ElementC<T> next)
 	{
-		this.previous = previous;
 		zaehler++;
+		this.next = next;
 	}
 	
-	public void setNext(ElementB<T> next)
-	{
-		this.next = next;
+	public void setKey(String key){
 		zaehler++;
+		this.key=key;
 	}
+	
+	
 	//-------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object ele)
 	{
-		if(ele instanceof ElementB<?>)
+		zaehler++;
+		if(ele instanceof ElementC<?>)
 		{
 			zaehler++;
-			if(((ElementB<T>) ele).key.equals(this.key) )
+			if(((ElementC<T>) ele).key.equals(this.key) )
 			{
-				zaehler++;
 				return true;
 			}		
 		}
