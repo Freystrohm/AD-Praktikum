@@ -36,6 +36,8 @@ public class ListeB<T> implements IList<T>
 				tail.setPrevious(new ElementB<T>(element));
 				// array[1] = tail;
 				head.setNext(tail.getPrevious());
+				tail.getPrevious().setNext(tail);
+				tail.getPrevious().setPrevious(head);
 			}
 			else
 			{
@@ -67,14 +69,6 @@ public class ListeB<T> implements IList<T>
 
 	private void delete(ElementB<T> element)
 	{
-		ElementB<T> temp = element;
-		zaehler++;
-		while (!temp.equals(tail))
-		{
-			zaehler++;
-			temp = temp.getNext();
-			zaehler++;
-		}
 		element.getNext().setPrevious(element.getPrevious());
 		element.getPrevious().setNext(element.getNext());
 		element.setNext(null);
