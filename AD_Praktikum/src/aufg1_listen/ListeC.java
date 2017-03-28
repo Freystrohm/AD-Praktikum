@@ -7,7 +7,7 @@ package aufg1_listen;
 public class ListeC<T> implements IList<T>
 {
 	// private Object[] array;
-	private ElementC<T> head, tail;
+	 ElementC<T> head, tail;
 	public int zaehler;
 
 	public ListeC()
@@ -16,6 +16,8 @@ public class ListeC<T> implements IList<T>
 		// array = new Object[10];
 		head = new ElementC<T>(null);
 		tail = new ElementC<T>(null);
+		head.setNext(tail);
+		tail.setNext(head);
 		zaehler+=2;
 	
 		// array[0] = head;
@@ -31,9 +33,9 @@ public class ListeC<T> implements IList<T>
 			zaehler++;
 			do{
 				zaehler++;
-					temp = temp.getNext();
-					zaehler++;
-			}while (!(temp.getNext()== tail));
+				temp = temp.getNext();
+				zaehler++;
+			}while (temp.getNext()!= tail);
 			zaehler++;
 			ElementC<T> neuesElement=new ElementC<T>(element);
 			neuesElement.setNext(temp.getNext());
@@ -89,7 +91,7 @@ public class ListeC<T> implements IList<T>
 			zaehler++;
 			temp = temp.getNext();
 			zaehler++;
-		}while (temp.getKey().equals(key));
+		}while (!temp.getKey().equals(key));
 		return temp;
 	}
 
