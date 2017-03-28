@@ -8,107 +8,99 @@ public class ListeC<T> implements IList<T>
 {
 	// private Object[] array;
 	private ElementC<T> head, tail;
+	public int zaehler;
 
 	public ListeC()
 	{
+		zaehler=0;
 		// array = new Object[10];
-		head = new ElementC<T>(null, 0);
-		tail = new ElementC<T>(null, 0);
+		head = new ElementC<T>(null);
+		tail = new ElementC<T>(null);
+		zaehler+=2;
+	
 		// array[0] = head;
 	}
 
 	@Override
-	public void insert(T element, int pos)
+	public void insert(T element, Object pos)
 	{
-		ElementC<T> temp = tail;
-
-		if (tail.getIndex() <= pos)
-		{
-			ElementC<T> neuesElement=new ElementC<T>(element, tail.getIndex());
-			findELe(tail.getIndex()-1).setNext(neuesElement);	
-			neuesElement.setNext(tail);
-		}
-		else
-		{
+		if(pos instanceof ElementC){
+			tail=(ElementC<T>)pos;
+			ElementC<T> temp = head;
+			
+			zaehler++;
 			do{
-				temp = temp.getNext();
-			}
-			while (!(temp.getNext().getIndex() == pos));
-			ElementC<T> neuesElement=new ElementC<T>(element, pos);
+				zaehler++;
+					temp = temp.getNext();
+					zaehler++;
+			}while (!(temp.getNext()== tail));
+			zaehler++;
+			ElementC<T> neuesElement=new ElementC<T>(element);
 			neuesElement.setNext(temp.getNext());
 			temp.setNext(neuesElement);
-			temp=neuesElement;
-			while(temp.getNext()!=tail){
-				temp.getNext().setIndex(temp.getIndex()+1);
-			}
-			
+			zaehler++;
+			temp=neuesElement;	
 		}
-		tail.setIndex(tail.getIndex()+1);
+		
 
 	}
 
 	@Override
-	public void delete(int pos)
+	public void delete(Object pos)
 	{
-		delete(findELe(pos));
+		zaehler++;
+		if(pos instanceof ElementC){
+			delete((ElementC)pos);
+		}
+		
 
 	}
 
 	@Override
 	public void delete(String key)
 	{
-		delete(findELe(key));
+		delete((ElementC<T>)find(key));
 	}
 
 	private void delete(ElementC<T> element)
 	{
+		zaehler++;
 		ElementC<T> temp = head;
+		zaehler++;
 		tail=element;
 		while (temp.getNext()!=element){
+			zaehler++;
+			zaehler++;
 			temp=temp.getNext();
 		}
+		if(temp.getNext().getNext()!=head){
 		temp.setNext(temp.getNext().getNext());
-		while(temp.getNext()!=tail){
-			temp.getNext().setIndex(temp.getIndex()-1);
 		}
-		tail.setIndex(tail.getIndex()-1);
-		
 	}
 
 	@Override
-	public int find(String key)
+	public Object find(String key)
 	{
-		return findELe(key).getIndex();
-	}
-
-	private ElementC<T> findELe(String key)
-	{	
 		tail.setKey(key);
-		ElementC<T> temp = tail;
+		zaehler++;
+		ElementC<T> temp = head;
 		
 		do{
+			zaehler++;
 			temp = temp.getNext();
+			zaehler++;
 		}while (temp.getKey().equals(key));
 		return temp;
 	}
 
-	private ElementC<T> findELe(int pos)
-	{
-		ElementC<T> temp = tail;
-		if(pos>=tail.getIndex()){
-			return tail;
-		}
-		do{
-			temp = temp.getNext();
-		}while (temp.getIndex() == pos);
-		
-		return temp;
-	}
-
 	@Override
-	public T retrieve(int pos)
+	public T retrieve(Object pos)
 	{
-		return findELe(pos).element;
+		if(pos instanceof ElementC){
+			
+		return ((ElementC<T>)pos).element;
+		}
+		return null;
 	}
 
 	@Override
@@ -116,16 +108,22 @@ public class ListeC<T> implements IList<T>
 	{
 		if (liste instanceof ListeC)
 		{
-			ElementC<T> temp = findELe(tail.getIndex()-1);
+			zaehler++;
+			ElementC<T> temp=head;
+			while(temp.getNext()!=tail){
+				zaehler++;
+				temp=temp.getNext();
+				zaehler++;
+			}
 			temp.setNext(((ListeC<T>) liste).head.getNext());
+			zaehler++;
 			tail=((ListeC<T>)liste).tail;
 			tail.setNext(head);
-			while(temp.getNext()!=tail){
-				temp.getNext().setIndex(temp.getIndex()+1);
-				temp=temp.getNext();
-			}
-			tail.setIndex(temp.getIndex()+1);
+			
 		}
 	}
 
+	public ElementC<T> getHead(){
+		return head;
+	}
 }

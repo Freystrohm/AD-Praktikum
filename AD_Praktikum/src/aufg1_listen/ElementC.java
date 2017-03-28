@@ -7,26 +7,24 @@ package aufg1_listen;
 class ElementC<T>
 {
 	private ElementC<T> next;
-	private int index;
 	private String key;
 	T element;
+	public static int zaehler=0;
 	
 	private static int nextKey = 0;
 	
-	public ElementC(T element, int index)
+	public ElementC(T element)
 	{
+		zaehler++;
 		this.element = element;
-		this.index = index;
+		zaehler++;
 		key = "Element " + nextKey;
+		zaehler++;
 		nextKey++;
 	}
 	
 	
 	//Getter---------------------------------------------
-	public int getIndex()
-	{
-		return index;
-	}
 	
 	public ElementC<T> getNext()
 	{
@@ -44,14 +42,12 @@ class ElementC<T>
 
 	public void setNext(ElementC<T> next)
 	{
+		zaehler++;
 		this.next = next;
 	}
 	
-	public void setIndex(int index)
-	{
-		this.index = index;
-	}
 	public void setKey(String key){
+		zaehler++;
 		this.key=key;
 	}
 	
@@ -61,8 +57,10 @@ class ElementC<T>
 	@Override
 	public boolean equals(Object ele)
 	{
+		zaehler++;
 		if(ele instanceof ElementC<?>)
 		{
+			zaehler++;
 			if(((ElementC<T>) ele).key.equals(this.key) )
 			{
 				return true;
