@@ -7,27 +7,25 @@ package aufg1_listen;
 class ElementB<T>
 {
 	private ElementB<T> previous, next;
-	private int index;
+	//private int index;
 	private String key;
 	T element;
 	
 	private static int nextKey = 0;
+	public static int zaehler = 0;
 	
-	public ElementB(T element, int index)
+	public ElementB(T element)
 	{
 		this.element = element;
-		this.index = index;
+		zaehler++;
 		key = "Element " + nextKey;
+		zaehler++;
 		nextKey++;
+		zaehler++;
 	}
 	
 	
-	//Getter---------------------------------------------
-	public int getIndex()
-	{
-		return index;
-	}
-	
+	//Getter---------------------------------------------	
 	public ElementB<T> getNext()
 	{
 		return next;
@@ -47,19 +45,14 @@ class ElementB<T>
 	public void setPrevious(ElementB<T> previous)
 	{
 		this.previous = previous;
+		zaehler++;
 	}
 	
 	public void setNext(ElementB<T> next)
 	{
 		this.next = next;
+		zaehler++;
 	}
-	
-	public void setIndex(int index)
-	{
-		this.index = index;
-	}
-	
-	
 	//-------------------------------------------------------
 	@SuppressWarnings("unchecked")
 	@Override
@@ -67,8 +60,10 @@ class ElementB<T>
 	{
 		if(ele instanceof ElementB<?>)
 		{
+			zaehler++;
 			if(((ElementB<T>) ele).key.equals(this.key) )
 			{
+				zaehler++;
 				return true;
 			}		
 		}
