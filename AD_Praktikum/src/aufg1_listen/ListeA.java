@@ -39,80 +39,91 @@ public class ListeA<T> implements IList<T>{
 
 
   @Override
-  public void insert(T element, int pos) {
+  public void insert(T element, Object pos) {
     
-    ElementA<T> temp[] = new ElementA[array.length+1];
-    zaehler++;
-      if(pos<=array.length && pos>=0){
-        zaehler++;  
+    if(pos instanceof Integer){
       
-        for(int i=0;i<pos;i++){
+      int posTemp = (int)pos;
+      
+      ElementA<T> temp[] = new ElementA[array.length+1];
+      zaehler++;
+        if(posTemp<=array.length && posTemp>=0){
+          zaehler++;  
+      
+          for(int i=0;i<posTemp;i++){
+            zaehler++;
+            temp[i]=array[i];
+            zaehler++;
+          }
+      
+          ElementA<T> tempEl = new ElementA<T>(Integer.toString(key), element);
           zaehler++;
-          temp[i]=array[i];
+          temp[posTemp]=tempEl;
           zaehler++;
-        }
       
-        ElementA<T> tempEl = new ElementA<T>(Integer.toString(key), element);
-        zaehler++;
-        temp[pos]=tempEl;
-        zaehler++;
+          for(int i=posTemp;i<array.length;i++){
+            zaehler++;
+            temp[i+1]=array[i];
+            zaehler++;
+          }
       
-        for(int i=pos;i<array.length;i++){
-          zaehler++;
-          temp[i+1]=array[i];
-          zaehler++;
-        }
+        }else{
       
-      }else{
-      
-        System.arraycopy(array, 0, temp, 0, array.length-1);
-        zaehler += array.length;
+          System.arraycopy(array, 0, temp, 0, array.length-1);
+          zaehler += array.length;
 
-        temp[array.length].setElement(element);
-        zaehler++;
+          temp[array.length].setElement(element);
+          zaehler++;
       
-      }
+        }
 
     
 
-    array=temp;
-    zaehler++;
-    key++;
-    zaehler++;
+        array=temp;
+        zaehler++;
+        key++;
+        zaehler++;
+    }
+    
+
   }
 
   @Override
-  public void delete(int pos) {
+  public void delete(Object pos) {
     
-    if(pos<array.length){
-      zaehler++;
+    if(pos instanceof Integer){  
+      int posTemp = (int)pos;
       
-      ElementA<T> temp[] = new ElementA[array.length-1];
-      zaehler++;
-      for(int i=0;i<array.length;i++){
+      if(posTemp<array.length){
         zaehler++;
-        if(i<pos){
+      
+        ElementA<T> temp[] = new ElementA[array.length-1];
+        zaehler++;
+        for(int i=0;i<array.length;i++){
           zaehler++;
-          temp[i]=array[i];
-          zaehler++;
+          if(i<posTemp){
+            zaehler++;
+            temp[i]=array[i];
+            zaehler++;
+          }
+          if(i>posTemp){
+            zaehler++;
+            temp[i-1]=array[i];
+            zaehler++;
+          }
         }
-        if(i>pos){
-          zaehler++;
-          temp[i-1]=array[i];
-          zaehler++;
-        }
+        array=temp;
+        zaehler++;
+      }else{
+        System.out.println("pos zu Groß");
       }
-    array=temp;
-    zaehler++;
-    }else{
-      System.out.println("pos zu Groß");
     }
- 
+    
   }
 
   @Override
   public void delete(String key) {
-    int pos = find(key);
+    int pos = (int)find(key);
     zaehler++;
     if(pos>-1){
       zaehler++;
@@ -124,7 +135,7 @@ public class ListeA<T> implements IList<T>{
   }
 
   @Override
-  public int find(String key) {
+  public Object find(String key) {
     for(int i=0;i<array.length;i++){
       zaehler++;
       if(array[i].getKey().equals(key)){
@@ -136,9 +147,13 @@ public class ListeA<T> implements IList<T>{
   }
 
   @Override
-  public T retrieve(int pos) {
+  public T retrieve(Object pos) {
     
-    return (T) array[pos].getElement();
+    if(pos instanceof Integer){
+      int posTemp = (int)pos;
+      return (T) array[posTemp].getElement();
+    }
+    return null;
   }
 
   @Override
