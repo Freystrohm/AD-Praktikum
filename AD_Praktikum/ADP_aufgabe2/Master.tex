@@ -1,0 +1,38 @@
+\input{Layout.tex}
+\input{MetaInformationen.tex}
+\input{Deckblatt.tex}
+% hier beginnt das Dokument
+\begin{document}
+
+%TitelSeite ohne pagnumbering
+\begin{titlepage}
+\maketitle
+\thispagestyle{empty}
+\end{titlepage}
+
+% Neue Seite
+\newpage
+
+%Romische Seitenzahlen
+\pagenumbering{Roman}
+
+
+% Inhaltsverzeichnis anzeigen
+\tableofcontents
+
+
+% Kapitel soll auf naechster Seite beginnen
+\newpage
+
+%arabisch Seitennummern
+\pagenumbering{arabic}
+
+%Einleitungsdatei einfügen
+%\input{Inhalt/Einleitung.tex}
+\input{Inhalt/Primzahlsuche.tex}
+
+% Neu Seite
+\newpage
+
+%Ende des Dokumentes
+\end{document}

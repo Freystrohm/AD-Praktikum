@@ -1,0 +1,6 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Primzahlsuche}{1}
+\contentsline {subsection}{\numberline {1.1}Langsam}{1}
+\contentsline {subsection}{\numberline {1.2}Schnelle}{1}
+\contentsline {subsection}{\numberline {1.3}Sieb des Eratosthenes}{3}
+\contentsline {subsection}{\numberline {1.4}Primzahleigenschaft feststellen}{3}

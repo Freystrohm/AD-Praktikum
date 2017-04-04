@@ -1,0 +1,41 @@
+% das Papierformat zuerst
+\documentclass
+[
+	a4paper, 
+	11pt, 
+	headings = normal,
+	automark
+]
+{scrartcl}
+
+% deutsche Silbentrennung und übersetzung von Standardtexten
+\usepackage[ngerman]{babel}
+
+% wegen deutschen Umlauten wichtig: Auf editor Formatierung achten und packet antsprechend anpassen!
+\usepackage[utf8]{inputenc}
+
+% Komascript für Kopf- und Fusszeile
+\usepackage{scrpage2}
+
+% Header un Footer mit scrheadings aus dem scrpage package defnieren
+\pagestyle{scrheadings}
+%setzen der header parameter i = inner o = outer c= center
+\ihead{\Titel\\[0.5ex]\headmark}
+\chead{}
+\ohead{}
+%setzen der Footer parameter
+\ifoot{}
+\cfoot{\pagemark}
+\ofoot{}
+%bestimmt was bei \headmark eingefügt wird
+%\automark[section]{section}
+%Setzen der Headline linie
+\setheadsepline[text]{0.01pt} 
+\setlength{\headheight}{1.1\baselineskip}
+
+%Zum Einbinden von Bildern
+\usepackage{graphicx}
+\graphicspath{{Dateien/}}
+
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
