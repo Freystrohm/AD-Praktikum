@@ -69,10 +69,13 @@ public class ListeB<T> implements IList<T>
 
 	private void delete(ElementB<T> element)
 	{
-		element.getNext().setPrevious(element.getPrevious());
-		element.getPrevious().setNext(element.getNext());
-		element.setNext(null);
-		element.setPrevious(null);
+		if(element!=tail)
+		{
+				element.getNext().setPrevious(element.getPrevious());
+				element.getPrevious().setNext(element.getNext());
+				element.setNext(null);
+				element.setPrevious(null);
+		}
 	}
 
 	@Override

@@ -5,7 +5,8 @@ import java.util.Arrays;
 public class Primzahlsuche
 {
 	public static int zaehlerLangsam = 0;
-	public static int zahlerSchnell = 0;
+	public static int zaehlerSchnell = 0;
+	public static int zaehlerIstPrimzahl=0;
 
 	public Primzahlsuche()
 	{
@@ -37,14 +38,14 @@ public class Primzahlsuche
 	{
 
 		boolean[] a = new boolean[n];
-		Arrays.fill(a, Boolean.TRUE);
+		//Arrays.fill(a, Boolean.TRUE);
 		for (int i = 0; i < n; i++)
 			a[i] = true;
 		for (int i = 2; i < n; i++)
 		{
-			for (int j = 2; j < Math.sqrt(i); j++)
+			for (int j = 2; j <= Math.sqrt(i); j++)
 			{
-				zahlerSchnell++;
+				zaehlerSchnell++;
 				if ((i % j == 0))
 				{
 					a[i] = false;
@@ -55,10 +56,11 @@ public class Primzahlsuche
 		return a;// alle i fuer die a[i] noch auf true steht, sind Primzahlen
 	}
 
-	public boolean istPrimzahl(int n)
+	public static boolean istPrimzahl(int n)
 	{
-		for (int j = 2; j < Math.sqrt(n); j++)
+		for (int j = 2; j <= Math.sqrt(n); j++)
 		{
+			zaehlerIstPrimzahl++;
 			if ((n % j == 0))
 			{
 				return false;
@@ -66,5 +68,6 @@ public class Primzahlsuche
 		}
 		return true;
 	}
-
 }
+
+	

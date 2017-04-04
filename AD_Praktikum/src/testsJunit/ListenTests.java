@@ -49,13 +49,28 @@ public class ListenTests
 	public void testDeleteB()
 	{
 		IList<String> liste = new ListeB<String>();
+		testDelete(liste);
+				
+	}
+	
+	@Test
+	public void testDeleteC()
+	{
+		IList<String> liste = new ListeC<String>();
+		testDelete(liste);
+	}
+	
+	public void testDelete(IList<String> liste)
+	{
 		liste.insert("TestElement 1", liste.find(""));
 		liste.insert("TestElement 2", liste.find(""));
 		liste.insert("TestElement 3", liste.find(""));
 		liste.insert("TestElement 4", liste.find(""));
 		
+		assertEquals("TestElement 2", liste.retrieve(liste.find("Element 3")));
+		
 		liste.delete("Element 3");
-		assertEquals(null, liste.retrieve(liste.find("Element 3")));		
+		assertEquals(null, liste.retrieve(liste.find("Element 3")));
 	}
 	
 	

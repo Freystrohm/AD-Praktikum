@@ -77,7 +77,7 @@ public class ListeC<T> implements IList<T>
 			zaehler++;
 			temp=temp.getNext();
 		}
-		if(temp.getNext().getNext()!=head){
+		if(temp.getNext()!=tail){
 		temp.setNext(temp.getNext().getNext());
 		}
 	}
