@@ -24,12 +24,12 @@ public class ListenTests
 		assertEquals("TestElement 3", liste.retrieve(liste.find(key)));
 	}
 	
-//	@Test
-//	public void testInsertListA()
-//	{
-//		IList<String> liste = new ListeA();
-//		testInsert(liste, "3");
-//	}
+	@Test
+	public void testInsertListA()
+	{
+		IList<String> liste = new ListeA();
+		testInsert(liste, "3");
+	}
 	
 	@Test
 	public void testInsertListB()
@@ -49,7 +49,7 @@ public class ListenTests
 	public void testDeleteB()
 	{
 		IList<String> liste = new ListeB<String>();
-		testDelete(liste);
+		testDelete(liste, "Element 3");
 				
 	}
 	
@@ -57,20 +57,27 @@ public class ListenTests
 	public void testDeleteC()
 	{
 		IList<String> liste = new ListeC<String>();
-		testDelete(liste);
+		testDelete(liste, "Element 3");
 	}
 	
-	public void testDelete(IList<String> liste)
+	@Test
+	public void testDeleteA()
+	{
+		IList<String> liste = new ListeA<String>();
+		testDelete(liste, "2");
+	}
+	
+	public void testDelete(IList<String> liste, String key)
 	{
 		liste.insert("TestElement 1", liste.find(""));
 		liste.insert("TestElement 2", liste.find(""));
 		liste.insert("TestElement 3", liste.find(""));
 		liste.insert("TestElement 4", liste.find(""));
 		
-		assertEquals("TestElement 2", liste.retrieve(liste.find("Element 3")));
+		assertEquals("TestElement 2", liste.retrieve(liste.find(key)));
 		
-		liste.delete("Element 3");
-		assertEquals(null, liste.retrieve(liste.find("Element 3")));
+		liste.delete(key);
+		assertEquals(null, liste.retrieve(liste.find(key)));
 	}
 	
 	

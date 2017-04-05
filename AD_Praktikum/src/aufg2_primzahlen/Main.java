@@ -3,7 +3,7 @@ package aufg2_primzahlen;
 public class Main {
 
   public static void main(String[] args) {
-	int k = 506;
+	int k = 1000;
     SiebDesEratosthenes test = new SiebDesEratosthenes(k);
     test.sieben();
 //    test.siebAusgeben();

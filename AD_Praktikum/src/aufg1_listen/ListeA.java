@@ -68,11 +68,13 @@ public class ListeA<T> implements IList<T>{
           }
       
         }else{
-      
-          System.arraycopy(array, 0, temp, 0, array.length-1);
+          if(array.length>0){
+        	  System.arraycopy(array, 0, temp, 0, array.length);
+          }
+          
           zaehler += array.length;
 
-          temp[array.length].setElement(element);
+          temp[array.length] = new ElementA<T>(""+key, element);
           zaehler++;
       
         }
@@ -106,7 +108,7 @@ public class ListeA<T> implements IList<T>{
             temp[i]=array[i];
             zaehler++;
           }
-          if(i>posTemp){
+          else if(i>posTemp){
             zaehler++;
             temp[i-1]=array[i];
             zaehler++;
@@ -151,7 +153,10 @@ public class ListeA<T> implements IList<T>{
     
     if(pos instanceof Integer){
       int posTemp = (int)pos;
-      return (T) array[posTemp].getElement();
+      if(!(posTemp < 0 || posTemp > array.length-1))
+      {
+    	  return (T) array[posTemp].getElement();
+      }
     }
     return null;
   }

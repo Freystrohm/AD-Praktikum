@@ -27,15 +27,14 @@ public class ListeC<T> implements IList<T>
 	public void insert(T element, Object pos)
 	{
 		if(pos instanceof ElementC){
-			tail=(ElementC<T>)pos;
-			ElementC<T> temp = head;
+			ElementC<T> temp =(ElementC<T>)pos;
 			
 			zaehler++;
-			do{
-				zaehler++;
-				temp = temp.getNext();
-				zaehler++;
-			}while (temp.getNext()!= tail);
+//			do{
+//				zaehler++;
+//				temp = temp.getNext();
+//				zaehler++;
+//			}while (temp.getNext()!= tail);
 			zaehler++;
 			if(temp.getNext()!=head){
 				ElementC<T> neuesElement=new ElementC<T>(element);
@@ -72,12 +71,12 @@ public class ListeC<T> implements IList<T>
 		ElementC<T> temp = head;
 		zaehler++;
 		tail=element;
-		while (temp.getNext()!=element){
-			zaehler++;
-			zaehler++;
-			temp=temp.getNext();
-		}
-		if(temp.getNext()!=tail){
+//		while (temp.getNext()!=element){
+//			zaehler++;
+//			zaehler++;
+//			temp=temp.getNext();
+//		}
+		if(temp.getNext().getNext()!=head){
 		temp.setNext(temp.getNext().getNext());
 		}
 	}
@@ -93,7 +92,7 @@ public class ListeC<T> implements IList<T>
 			zaehler++;
 			temp = temp.getNext();
 			zaehler++;
-		}while (!temp.getKey().equals(key));
+		}while (!temp.getNext().getKey().equals(key));
 		return temp;
 	}
 
@@ -102,7 +101,7 @@ public class ListeC<T> implements IList<T>
 	{
 		if(pos instanceof ElementC){
 			
-		return ((ElementC<T>)pos).element;
+		return (((ElementC<T>)pos).getNext()).element;
 		}
 		return null;
 	}
