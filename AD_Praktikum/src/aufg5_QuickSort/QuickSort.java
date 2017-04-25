@@ -5,7 +5,9 @@ package aufg5_QuickSort;
 
 public class QuickSort<T extends Comparable<T>>
 {
-	T[] array;
+	private T[] array;
+	
+	public int zaehler = 0;
 
 	public QuickSort(T[] array)
 	{
@@ -105,10 +107,12 @@ public class QuickSort<T extends Comparable<T>>
 			while (array[ilinks].compareTo(pivot) < 0)
 			{
 				ilinks++;
+				zaehler++;
 			}
 			while (array[irechts].compareTo(pivot) > 0 && irechts != ilinks)
 			{
 				irechts--;
+				zaehler++;
 			}
 
 			if (ilinks == irechts)
@@ -121,7 +125,7 @@ public class QuickSort<T extends Comparable<T>>
 				System.out.println("ilinks > irechts");
 				break;
 			}
-
+			
 			swap(ilinks, irechts);
 		}
 		swap(irechts, rechts);
