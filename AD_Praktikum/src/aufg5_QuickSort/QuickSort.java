@@ -122,7 +122,7 @@ public class QuickSort<T extends Comparable<T>>
 			else if (ilinks > irechts)
 			{
 				irechts = ilinks;
-				System.out.println("ilinks > irechts");
+				//System.out.println("ilinks > irechts");
 				break;
 			}
 			
