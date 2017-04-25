@@ -13,10 +13,10 @@ import org.junit.Test;
 
 import aufg5_QuickSort.QuickSort;
 
-public class Quicksort
+public class QuickSortTests
 {
 	Integer[] array, in;
-	int k = 30;
+	int k = 10000;
 	@Before
 	public void init()
 	{
