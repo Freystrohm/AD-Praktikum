@@ -100,14 +100,10 @@ public class Quicksort<T extends Comparable<T>> {
 		}
 	}
 	public static void main(String[] args) {
-		Quicksort<Integer> qs = new Quicksort<Integer>( Suchverfahren.ENDE, createBSArray(100));
-			qs.shuffe(10000);
+		Quicksort<Integer> qs = new Quicksort<Integer>( Suchverfahren.ENDE, createBSArray(10000));
+			
 			qs.quicksort();
 			System.out.println(qs.zaehler);
-		
-
-		qs.quicksort();
-		
 	
 
 	}
