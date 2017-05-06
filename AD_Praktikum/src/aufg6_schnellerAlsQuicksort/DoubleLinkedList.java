@@ -5,49 +5,56 @@
 */
 package aufg6_schnellerAlsQuicksort;
 
-public class DoubleLinkedList <T extends Comparable<T>> {
+public class DoubleLinkedList {
 
-	private Element<T> head;
-	private Element<T> tail;
+	private Element head;
+	private Element tail;
 	private int anzEle=0;
 	
-	public void setHead(Element<T> head){
+	
+	public void setHead(Element head){
 		this.head=head;
 	}
-	public Element<T> getHead(){
+	public Element getHead(){
 		return head;
 	}
 	
-	public void setTail(Element<T> tail){
+	public void setTail(Element tail){
 		this.tail=tail;
 	}
-	public Element<T> getTail(){
+	public Element getTail(){
 		return tail;
 	}
 	
-	public void insert(Element<T> newEle){
+	public void insert(Element newEle){
 		anzEle++;
-		Element<T> tmpEle=head;
-		while(tmpEle.compareTo(newEle)>0&&tmpEle!=tail){
-			tmpEle=tmpEle.getNext();
-		}
-		tmpEle.getPrev().setNext(newEle);
-		newEle.setPrev(tmpEle.getPrev());
-		newEle.setNext(tmpEle);
-		tmpEle.setPrev(newEle);
-		if(newEle.getPrev()==null){
+		if(head==null){
 			head=newEle;
-		}
-		if(newEle.getNext()==null){
 			tail=newEle;
 		}
+		else{
+			Element tmpEle=head;
+			while(tmpEle.getValue()>newEle.getValue()&&tmpEle!=tail){
+				tmpEle=tmpEle.getNext();
+			}
+			newEle.setPrev(tmpEle);
+			newEle.setNext(tmpEle);
+			tmpEle.setPrev(newEle);
+			if(newEle.getPrev()==null){
+				head=newEle;
+			}
+			if(newEle.getNext()==null){
+				tail=newEle;
+			}
+		}
+
 	}
 	
-	public int catArray(int index, T[] array){
+	public int catArray(int index, int[] array){
 		
-		Element<T> tmp=head;
+		Element tmp=head;
 		for(int i=0;i<anzEle;i++){
-			array[index+i]=tmp.getValue();
+			array[index+i]= tmp.getValue();
 			tmp=tmp.getNext();
 		}
 		return index+anzEle;

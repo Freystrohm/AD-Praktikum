@@ -5,48 +5,32 @@
 */
 package aufg6_schnellerAlsQuicksort;
 
-public class Element <T extends Comparable<T>>{
-	private Element<T> next;
-	private Element<T> prev;
-	private static Element head;
-	private static Element tail;
-	private T value;
+public class Element {
+	private Element next;
+	private Element prev;
+
+	private int value;
 	
-	public void setTail(Element<T> tail){
-		this.tail=tail;
-	}
-	public Element<T> getTail(){
-		return tail;
-	}
-	public void setHead(Element<T> head){
-		this.head=head;
-	}
-	public Element<T> getHead(){
-		return head;
-	}
-	
-	public T getValue(){
+	public Integer getValue(){
 		return value;
 	}
-	public Element(T value){
+	public Element(int value){
 		this.value=value;
 	}
-	public void setNext(Element<T> next){
+	public void setNext(Element next){
 		this.next=next;
 	}
-	public void setPrev(Element<T> prev){
+	public void setPrev(Element prev){
 		this.prev=prev;
 	}
-	public Element<T> getPrev(){
+	public Element getPrev(){
 		return prev;
 	}
-	public Element<T> getNext(){
+	public Element getNext(){
 		return next;
 	}
 	
-	public int compareTo(Element<T> e2){
-		return value.compareTo(e2.value);
-	}
+	
 
 
 }
