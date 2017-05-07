@@ -45,18 +45,27 @@ public class SchnelleSuche {
 			if(tmpListe[index]==null){
 				tmpListe[index]=new DoubleLinkedList();
 			}
-			tmpListe[index].insert(elementI);
-			elementI=elementI.getNext();
+			elementI=tmpListe[index].insert(elementI);
+			
 		}
 		int anzEle=0;
 		
 		for(int i=0;i<array.length;i++){
+			if(tmpListe[i]!=null){
 			anzEle+=tmpListe[i].catArray(anzEle, array);
+			}
+		}
+		
+	}
+	public void printArray(){
+		for(int i=0;i<array.length;i++){
+			System.out.println(array[i]);
 		}
 	}
 	public static void main(String[] args) {
-		int[] array={1,4,2,53,21,51};
+		int[] array={1,3,5,2,7,3};
 		SchnelleSuche ss=new SchnelleSuche(array);
 		ss.sort();
+		ss.printArray();
 	}
 }

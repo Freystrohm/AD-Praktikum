@@ -11,43 +11,39 @@ public class DoubleLinkedList {
 	private Element tail;
 	private int anzEle=0;
 	
-	
-	public void setHead(Element head){
-		this.head=head;
+	public DoubleLinkedList() {
+		head=new Element(0);
+		tail=new Element(0);
+		head.setNext(tail);
+		head.setPrev(tail);
+		tail.setNext(head);
+		tail.setPrev(head);
 	}
+	
+
 	public Element getHead(){
 		return head;
 	}
 	
-	public void setTail(Element tail){
-		this.tail=tail;
-	}
+
 	public Element getTail(){
 		return tail;
 	}
 	
-	public void insert(Element newEle){
+	public Element insert(Element newEle){
 		anzEle++;
-		if(head==null){
-			head=newEle;
-			tail=newEle;
-		}
-		else{
+		Element nextEle=newEle.getNext();
+	
 			Element tmpEle=head;
-			while(tmpEle.getValue()>newEle.getValue()&&tmpEle!=tail){
+			while(tmpEle.getNext()!=tail && newEle.getValue()>tmpEle.getNext().getValue()){
 				tmpEle=tmpEle.getNext();
 			}
-			newEle.setPrev(tmpEle);
-			newEle.setNext(tmpEle);
-			tmpEle.setPrev(newEle);
-			if(newEle.getPrev()==null){
-				head=newEle;
-			}
-			if(newEle.getNext()==null){
-				tail=newEle;
-			}
-		}
+		newEle.setNext(tmpEle.getNext());
+		newEle.setPrev(tmpEle);
+		tmpEle.setNext(newEle);
+			
 
+		return nextEle;
 	}
 	
 	public int catArray(int index, int[] array){
